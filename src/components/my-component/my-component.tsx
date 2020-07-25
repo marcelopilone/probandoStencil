@@ -10,7 +10,9 @@ export class MyComponent {
   /**
    * The first name
    */
-  @Prop() first: string;
+  @Prop() nombre: string;
+
+  @Prop() apellido: string;
 
   /**
    * The middle name
@@ -22,13 +24,9 @@ export class MyComponent {
    */
   @Prop() last: string;
 
-  @Prop() name: string = 'hola';
+  @Prop() name: string = "";
 
   
-
-  retornarNombre(): string {
-    return this.name;
-  }
 
   hacerSuma( paramUno,paramDos ){
     let resultadoFinal = paramUno+paramDos;
@@ -43,20 +41,21 @@ export class MyComponent {
     const jsonApi = await response.json();
     console.log(jsonApi);
     for (let i = 0; i < jsonApi['articles'].length; i++) {
-        console.log(jsonApi['articles'][i].author);
+      console.log(jsonApi['articles'][i].author);
+        "<p>"+jsonApi['articles'][i].author+"</p>";
     }
+    return "asdasd";
   }
  
 
   render() {
     return(
         <div>
-          <p class="rojo">{this.retornarNombre()}</p>
-          <p class="azul">{this.retornarNombre()}</p>
+          <p class="rojo">{this.nombre}</p>
+          <p class="azul">{this.apellido}</p>
           <p class="azul">{this.hacerSuma(1,5)}</p>
           <p>{this.mostrarJson()}</p>
         </div>
-
     );
   }
 }
