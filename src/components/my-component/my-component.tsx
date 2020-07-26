@@ -38,42 +38,36 @@ export class MyComponent {
       return resultadoFinal;
   }
 
-  /*async mostrarJson(){
-    const jaja = [ 
+  render() {
+    const jsonApi = [ 
         {
             "id": 1,
-            "title": "Hello World",
-            "content": "Try Reactjs is awesome. Can't wait to learn more",
+            "title": "El Marcelito re loco",
+            "content": "jajaja",
             "date": "12-04-2017",
-            "slug": "hello-world"
         },
         {
             "id": 2,
-            "title": "Setup React",
-            "content": "Setting up react is easy. Learn more about it!",
+            "title": "La pachanga",
+            "content": "jejeje",
             "date": "1-28-2018",
-            "slug": "setup-react"
         }
     ];
-    const jsonApi = await jaja;
     var ids = [];
     for (let i = 0; i < jsonApi.length; i++) {
       ids.push(jsonApi[i].title)
     }
-    console.log(ids[0]);
-    return ids[0];
-
-  }
- 
-  todos = this.mostrarJson();*/
-
-  render() {
+    console.log(ids);
     return(
         <div>
           <p class="rojo">{this.nombre}</p>
           <p class="azul">{this.apellido}</p>
           <p class="azul">{this.hacerSuma(1,5)}</p>
+          {ids.map((value, index) => {
+            return <p>{value}</p>
+          })}
         </div>
     );
+
   }
 }
