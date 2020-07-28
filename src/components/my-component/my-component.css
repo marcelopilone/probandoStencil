@@ -9,3 +9,7 @@
 .azul{
 	color: blue;
 }
+
+.seOculta{
+	display: none;
+}

@@ -28,6 +28,8 @@ export class MyComponent {
 
   @Prop() elJson: string = "";
 
+  @Prop() claseRojo: string = "rojo";
+
   
 
   hacerSuma( paramUno,paramDos ){
@@ -38,8 +40,17 @@ export class MyComponent {
       return resultadoFinal;
   }
 
-  render() {
-    const jsonApi = [ 
+  ocultando(event: UIEvent) {
+    if( this.claseRojo == 'rojo' ){
+      this.claseRojo = this.claseRojo = this.claseRojo+" seOculta";
+    }else{
+      this.claseRojo = 'rojo';
+    }
+    return this.claseRojo;
+  }
+
+  mostrarJson(){
+    return [ 
         {
             "id": 1,
             "title": "El Marcelito re loco",
@@ -53,19 +64,32 @@ export class MyComponent {
             "date": "1-28-2018",
         }
     ];
-    var ids = [];
+  }
+
+  /*async mostrarJson(){
+    const response = await fetch("http://newsapi.org/v2/everything?q=bitcoin&from=2020-06-24&sortBy=publishedAt&apiKey=60a3422a1902418f89de619e7778294c");
+    const jsonApi = await response.json();
+    console.log(jsonApi);
+    for (let i = 0; i < jsonApi['articles'].length; i++) {
+        console.log(jsonApi['articles'][i].author);
+    }
+  }*/
+
+  render() {
+    const jsonApi = this.mostrarJson();
+    let ids = [];
     for (let i = 0; i < jsonApi.length; i++) {
       ids.push(jsonApi[i].title)
     }
-    console.log(ids);
     return(
         <div>
-          <p class="rojo">{this.nombre}</p>
+          <p id="nombresito" class={this.claseRojo}>{this.nombre}</p>
           <p class="azul">{this.apellido}</p>
           <p class="azul">{this.hacerSuma(1,5)}</p>
           {ids.map((value, index) => {
             return <p>{value}</p>
           })}
+          <button onClick={this.ocultando.bind(this)}>Ocultar!</button>
         </div>
     );
 
